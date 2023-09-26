@@ -1,0 +1,41 @@
+<div class="container">
+  <h1>Driver: <span class="text-primary">{{ driver.fullName }}</span></h1>
+  <hr>
+
+  <div class="row">
+    <div class="col-md-2">Id</div>
+    <div class="col-md-4">{{ driver.id }}</div>
+  </div>
+
+  <div class="row mt-2">
+    <div class="col-md-2">Social Security Number</div>
+    <div class="col-md-4">{{ driver.ssn }}</div>
+  </div>
+
+  <div class="row mt-2">
+    <div class="col-md-2">Age</div>
+    <div class="col-md-4">{{ driver.age }}</div>
+  </div>
+
+  <div class="row mt-2">
+    <div class="col-md-2">Gender</div>
+    <div class="col-md-4">{{ driver.gender }}</div>
+  </div>
+
+  <hr>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Production Year</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let car of driver.cars">
+        <td>{{ car.title }}</td>
+        <td>{{ car.productionYear | date:"YYYY" }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DriverService } from '../services/driver.service';
 import { DriverList } from '../models/drivers/driverList.model';
+import { DriverService } from '../services/driver.service';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
@@ -16,16 +16,14 @@ export class DriversComponent implements OnInit {
 
   ngOnInit(): void {
 
-    // This executes when the DriverComponent is initalized and ready to rumble!
     this.driverSvc.getDrivers().subscribe({
-      next: (driversFromApi: DriverList[]) => {
-        this.drivers = driversFromApi;
+      next: (driverListArrayFromApi: DriverList[]) => {
+        this.drivers = driverListArrayFromApi;
       },
       error: (err: HttpErrorResponse) => {
-        console.log(err);
+        alert(err);
       }
     });
   }
-
 
 }

@@ -7,12 +7,14 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HomeComponent } from './home/home.component';
 import { DriversComponent } from './drivers/drivers.component';
 import { HttpClientModule } from '@angular/common/http';
+import { DriverDetailsComponent } from './drivers/driver-details/driver-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     DriversComponent,
+    DriverDetailsComponent,
   ],
   imports: [
     BrowserModule,

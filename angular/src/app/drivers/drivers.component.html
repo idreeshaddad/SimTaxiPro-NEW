@@ -1,22 +1,28 @@
-<h1>Drivers</h1>
-<hr>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Id</th>
-      <th>Full Name</th>
-      <th>SSN</th>
-      <th>Age</th>
-      <th>Gender</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let driver of drivers">
-      <td>{{ driver.id }}</td>
-      <td>{{ driver.fullName }}</td>
-      <td>{{ driver.ssn }}</td>
-      <td>{{ driver.age }}</td>
-      <td>{{ driver.gender }}</td>
-    </tr>
-  </tbody>
-</table>
+<div class="container">
+  <h1>Drivers</h1>
+  <hr>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Full Name</th>
+        <th>SSN</th>
+        <th>Age</th>
+        <th>Gender</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let driver of drivers">
+        <td>{{ driver.fullName }}</td>
+        <td>{{ driver.ssn }}</td>
+        <td>{{ driver.age }}</td>
+        <td>{{ driver.gender }}</td>
+        <td>
+          <a [routerLink]="['details', driver.id]" title="Details">
+            <i class="fa-solid fa-circle-info text-info"></i>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
