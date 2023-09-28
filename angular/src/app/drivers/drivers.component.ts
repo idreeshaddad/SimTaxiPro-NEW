@@ -11,6 +11,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class DriversComponent implements OnInit {
 
   drivers: DriverList[] = [];
+  showLoader: boolean = true;
 
   constructor(private driverSvc: DriverService) { }
 
@@ -19,6 +20,7 @@ export class DriversComponent implements OnInit {
     this.driverSvc.getDrivers().subscribe({
       next: (driverListArrayFromApi: DriverList[]) => {
         this.drivers = driverListArrayFromApi;
+        this.showLoader = false;
       },
       error: (err: HttpErrorResponse) => {
         alert(err);

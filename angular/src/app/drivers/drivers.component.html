@@ -1,7 +1,7 @@
 <div class="container">
   <h1>Drivers</h1>
   <hr>
-  <table class="table table-striped">
+  <table class="table table-striped" *ngIf="showLoader == false">
     <thead>
       <tr>
         <th>Full Name</th>
@@ -25,4 +25,11 @@
       </tr>
     </tbody>
   </table>
+
+  <div class="text-center mt-5" *ngIf="showLoader">
+    <div class="spinner-border text-warning wp-100 hp-100" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+
 </div>
