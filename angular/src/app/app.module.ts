@@ -8,6 +8,8 @@ import { HomeComponent } from './home/home.component';
 import { DriversComponent } from './drivers/drivers.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DriverDetailsComponent } from './drivers/driver-details/driver-details.component';
+import { CreateUpdateDriverComponent } from './drivers/create-update-driver/create-update-driver.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -15,12 +17,14 @@ import { DriverDetailsComponent } from './drivers/driver-details/driver-details.
     HomeComponent,
     DriversComponent,
     DriverDetailsComponent,
+    CreateUpdateDriverComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

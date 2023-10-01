@@ -1,6 +1,8 @@
 <div class="container">
   <h1>Drivers</h1>
   <hr>
+  <button class="btn btn-primary" [routerLink]="['create']">Create Driver</button>
+  <hr>
   <table class="table table-striped" *ngIf="showLoader == false">
     <thead>
       <tr>
@@ -20,6 +22,12 @@
         <td>
           <a [routerLink]="['details', driver.id]" title="Details">
             <i class="fa-solid fa-circle-info text-info"></i>
+          </a>
+          <a [routerLink]="['edit', driver.id]" title="Edit">
+            <i class="fa-solid fa-pen-to-square ms-2"></i>
+          </a>
+          <a href="#" title="Edit">
+            <i class="fa-solid fa-trash ms-2 text-danger"></i>
           </a>
         </td>
       </tr>

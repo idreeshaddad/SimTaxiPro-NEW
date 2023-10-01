@@ -11,6 +11,7 @@ namespace MB.SimTaxiPro.WebApi
             var builder = WebApplication.CreateBuilder(args);
 
 
+
             // Define CORS policy
             var apiCorsPolicy = "ApiCorsPolicy";
             builder.Services.AddCors(options =>
