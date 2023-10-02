@@ -1,7 +1,8 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CreateUpdateDriver } from 'src/app/models/drivers/createUpdateDriver.model';
 import { DriverDetails } from 'src/app/models/drivers/driverDetails.model';
 import { DriverService } from 'src/app/services/driver.service';
 
@@ -18,7 +19,8 @@ export class CreateUpdateDriverComponent implements OnInit {
   constructor(
     private driverSvc: DriverService,
     private activatedRoute: ActivatedRoute,
-    private fb: FormBuilder) { }
+    private fb: FormBuilder,
+    private router: Router) { }
 
   ngOnInit(): void {
 
@@ -34,7 +36,19 @@ export class CreateUpdateDriverComponent implements OnInit {
   submitForm(): void {
 
     if (this.driverForm.valid) {
-      // TODO send form to the api endpoint Create OR Edit
+
+      const driver: CreateUpdateDriver = this.driverForm.value;
+      driver.gender = Number(this.driverForm.controls['gender'].value);
+
+      this.driverSvc.createDriver(driver).subscribe({
+        next: () => {
+          // TODO redirect to Driver List page
+          this.router.navigate(['drivers']);
+        },
+        error: (err: HttpErrorResponse) => {
+          console.log(err);
+        }
+      });
     }
   }
 
@@ -71,7 +85,7 @@ export class CreateUpdateDriverComponent implements OnInit {
       lastName: ['', Validators.required],
       ssn: ['', Validators.required],
       dateOfBirth: ['', Validators.required],
-      gender: ['', Validators.required]
+      gender: [, Validators.required]
     });
 
   }

@@ -96,14 +96,14 @@ namespace MB.SimTaxiPro.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Driver>> CreateDriver(CreateUpdateDriverDto driverDto)
+        public async Task<ActionResult> CreateDriver(CreateUpdateDriverDto driverDto)
         {
             var driver = _mapper.Map<Driver>(driverDto);
 
             _context.Drivers.Add(driver);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetDriver", new { id = driver.Id }, driver);
+            return Ok();
         }
 
         [HttpDelete("{id}")]
