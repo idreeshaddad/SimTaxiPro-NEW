@@ -18,7 +18,7 @@
         <td>{{ driver.fullName }}</td>
         <td>{{ driver.ssn }}</td>
         <td>{{ driver.age }}</td>
-        <td>{{ driver.gender }}</td>
+        <td>{{ genderEnum[driver.gender] }}</td>
         <td>
           <a [routerLink]="['details', driver.id]" title="Details">
             <i class="fa-solid fa-circle-info text-info"></i>

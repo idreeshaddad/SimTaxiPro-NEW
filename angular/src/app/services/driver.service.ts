@@ -28,4 +28,14 @@ export class DriverService {
 
     return this.http.post<CreateUpdateDriver>(`${this.apiUrl}/CreateDriver`, driver);
   }
+
+  getDriverForEdit(id: number): Observable<CreateUpdateDriver> {
+
+    return this.http.get<CreateUpdateDriver>(`${this.apiUrl}/GetDriverForEdit/${id}`);
+  }
+
+  editDriver(id: number, driver: CreateUpdateDriver): Observable<any> {
+
+    return this.http.put<CreateUpdateDriver>(`${this.apiUrl}/EditDriver/${id}`, driver);
+  }
 }

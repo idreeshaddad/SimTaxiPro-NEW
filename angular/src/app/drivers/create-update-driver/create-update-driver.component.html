@@ -1,5 +1,13 @@
 <div class="container">
-  <h1>Create a new driver</h1>
+  <h1>
+    <ng-container *ngIf="pageMode == pageModeEnum.Create; else elsePageHeader">
+      <span>Create a new driver</span>
+    </ng-container>
+    <ng-template #elsePageHeader>
+      <span>Edit Driver</span>
+    </ng-template>
+
+  </h1>
   <hr>
   <form [formGroup]="driverForm" (ngSubmit)="submitForm()">
 
@@ -33,7 +41,8 @@
     </div>
 
     <div class="mt-4">
-      <button class="btn btn-primary" type="submit">
+      <button class="btn btn-secondary" [routerLink]="['/drivers']">Cancel</button>
+      <button class="btn btn-primary ms-2" type="submit">
         Create
       </button>
     </div>

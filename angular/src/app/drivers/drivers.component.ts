@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DriverList } from '../models/drivers/driverList.model';
 import { DriverService } from '../services/driver.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Gender } from '../enums/gender.enum';
 
 @Component({
   selector: 'app-drivers',
@@ -9,6 +10,8 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrls: ['./drivers.component.css']
 })
 export class DriversComponent implements OnInit {
+
+  genderEnum = Gender;
 
   drivers: DriverList[] = [];
   showLoader: boolean = true;

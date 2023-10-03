@@ -56,6 +56,23 @@ namespace MB.SimTaxiPro.WebApi.Controllers
             return driverDto;
         }
 
+        [HttpGet("{id}")]
+        public async Task<ActionResult<CreateUpdateDriverDto>> GetDriverForEdit(int id)
+        {
+            var driver = await _context
+                                    .Drivers
+                                    .SingleOrDefaultAsync(driver => driver.Id == id);
+
+            if (driver == null)
+            {
+                return NotFound();
+            }
+
+            var driverDto = _mapper.Map<CreateUpdateDriverDto>(driver);
+
+            return driverDto;
+        }
+
         [HttpPut("{id}")]
         public async Task<IActionResult> EditDriver(int id, CreateUpdateDriverDto driverDto)
         {
@@ -65,8 +82,8 @@ namespace MB.SimTaxiPro.WebApi.Controllers
             }
 
             var driver = await _context
-                            .Drivers
-                            .SingleOrDefaultAsync();
+                                    .Drivers
+                                    .FindAsync(id);
 
             if (driver == null)
             {
@@ -124,34 +141,6 @@ namespace MB.SimTaxiPro.WebApi.Controllers
 
             return NoContent();
         }
-
-        //[HttpPost]
-        //public async Task<IActionResult> AssignDriverCar(int driverId, int carId)
-        //{
-        //    var driver = await _context
-        //                    .Drivers
-        //                    .Include(driver => driver.Cars)
-        //                    .SingleOrDefaultAsync(driver => driver.Id == driverId);
-
-        //    if(driver == null)
-        //    {
-        //        return NotFound($"Driver with Id={driverId} cannot be found");
-        //    }
-
-        //    var car = await _context.Cars.FindAsync(carId);
-
-        //    if (car == null)
-        //    {
-        //        return NotFound($"Car with Id={carId} cannot be found");
-        //    }
-
-        //    driver.Cars.Add(car);
-
-        //    _context.Update(driver);
-        //    await _context.SaveChangesAsync();
-
-        //    return Ok();
-        //}
 
         [HttpPost]
         public async Task<IActionResult> AssignDriverCars(int driverId, List<int> carIds)
