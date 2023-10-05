@@ -45,6 +45,7 @@ namespace MB.SimTaxiPro.WebApi.Controllers
             var car = await _context
                                 .Cars
                                 .Include(car => car.Driver)
+                                .Where(car => car.Id == id)
                                 .SingleOrDefaultAsync();
 
             if (car == null)

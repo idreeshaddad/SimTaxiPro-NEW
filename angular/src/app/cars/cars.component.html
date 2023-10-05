@@ -24,9 +24,9 @@
           <a [routerLink]="['edit', car.id]" title="Edit">
             <i class="fa-solid fa-pen-to-square ms-2"></i>
           </a>
-          <!-- <a class="pointer" title="Delete" (click)="openDeleteModal(deleteModalTemplate, car)">
+          <a class="pointer" title="Delete" (click)="openDeleteModal(deleteModalTemplate, car)">
             <i class="fa-solid fa-trash ms-2 text-danger"></i>
-          </a> -->
+          </a>
         </td>
       </tr>
     </tbody>
@@ -38,17 +38,17 @@
     </div>
   </div>
 
-  <!-- <ng-template #deleteModalTemplate let-modal>
+  <ng-template #deleteModalTemplate let-modal>
     <div class="modal-header">
       <h4 class="modal-title" id="modal-basic-title">Delete Car</h4>
     </div>
     <div class="modal-body">
-      <h5>Are you sure you want to delete <span class="text-danger ">{{ selectedCar.fullName }}</span>?</h5>
+      <h5>Are you sure you want to delete <span class="text-danger ">{{ selectedCar.title }}</span>?</h5>
     </div>
     <div class="modal-footer">
       <button class="btn btn-secondary" (click)="modal.dismiss()">Cancel</button>
       <button type="button" class="btn btn-danger" (click)="modal.close('deleted')">Delete</button>
     </div>
-  </ng-template> -->
+  </ng-template>
 
 </div>

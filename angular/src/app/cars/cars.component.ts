@@ -16,7 +16,7 @@ export class CarsComponent implements OnInit {
 
   showLoader: boolean = true;
   cars: Car[] = [];
-  // selectedCar!: CarList;
+  selectedCar!: Car;
 
   constructor(
     private carSvc: CarService,
@@ -27,15 +27,15 @@ export class CarsComponent implements OnInit {
     this.loadCars();
   }
 
-  // openDeleteModal(deleteModalTemplate: any, car: CarList): void {
+  openDeleteModal(deleteModalTemplate: any, car: Car): void {
 
-  //   this.selectedCar = car;
-  //   this.modalService.open(deleteModalTemplate).result.then(
-  //     () => {
-  //       this.deleteCar();
-  //     }
-  //   );
-  // }
+    this.selectedCar = car;
+    this.modalService.open(deleteModalTemplate).result.then(
+      () => {
+        this.deleteCar();
+      }
+    );
+  }
 
   //#region Private Function
 
@@ -52,17 +52,17 @@ export class CarsComponent implements OnInit {
     });
   }
 
-  // private deleteCar(): void {
+  private deleteCar(): void {
 
-  //   this.carSvc.deleteCar(this.selectedCar.id).subscribe({
-  //     next: () => {
-  //       this.loadCars();
-  //     },
-  //     error: (err: HttpErrorResponse) => {
-  //       console.log(err);
-  //     }
-  //   });
-  // }
+    this.carSvc.deleteCar(this.selectedCar.id).subscribe({
+      next: () => {
+        this.loadCars();
+      },
+      error: (err: HttpErrorResponse) => {
+        console.log(err);
+      }
+    });
+  }
 
   //#endregion
 }

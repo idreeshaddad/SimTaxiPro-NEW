@@ -1,0 +1,40 @@
+<div class="container">
+  <h1>
+    Car Details
+    <span class="text-primary">{{ car?.title }}</span>
+  </h1>
+  <hr>
+
+  <div class="row">
+    <div class="col-md-2">Manufacturer</div>
+    <div class="col-md-4">{{ car?.manufacturer }}</div>
+  </div>
+
+  <div class="row mt-2">
+    <div class="col-md-2">Model</div>
+    <div class="col-md-4">{{ car?.model }}</div>
+  </div>
+
+  <div class="row mt-2">
+    <div class="col-md-2">Plate Number</div>
+    <div class="col-md-4">{{ car?.plateNumber }}</div>
+  </div>
+
+  <div class="row mt-2">
+    <div class="col-md-2">Production Year</div>
+    <div class="col-md-4">{{ car?.productionYear | date:'YYYY' }}</div>
+  </div>
+
+  <div class="row mt-2" *ngIf="car?.driverFullName?.length != 0">
+    <div class="col-md-2">Assigned to</div>
+    <div class="col-md-4">
+      <span class="fw-bold">{{ car?.driverFullName }}</span>
+    </div>
+  </div>
+
+  <div class="mt-4">
+    <button class="btn btn-secondary" [routerLink]="['/cars']">Back</button>
+    <button class="btn btn-primary ms-2" [routerLink]="['/cars/edit', car?.id]">Edit</button>
+  </div>
+
+</div>
