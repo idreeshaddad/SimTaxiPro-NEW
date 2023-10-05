@@ -1,6 +1,6 @@
 ﻿namespace MB.SimTaxiPro.Dtos.Bookings
 {
-    public class BookingListDto
+    public class BookingDto
     {
         public int Id { get; set; }
         public string From { get; set; }

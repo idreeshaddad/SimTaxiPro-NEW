@@ -1,34 +1,32 @@
 <div class="container">
-  <h1>Drivers</h1>
+  <h1>Cars</h1>
   <hr>
-  <button class="btn btn-primary" [routerLink]="['create']">Create Driver</button>
+  <button class="btn btn-primary" [routerLink]="['create']">Create Car</button>
   <hr>
   <table class="table table-striped" *ngIf="showLoader == false">
     <thead>
       <tr>
-        <th>Full Name</th>
-        <th>SSN</th>
-        <th>Age</th>
-        <th>Gender</th>
+        <th>Car</th>
+        <th>Year</th>
+        <th>Driver</th>
         <th>Actions</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let driver of drivers">
-        <td>{{ driver.fullName }}</td>
-        <td>{{ driver.ssn }}</td>
-        <td>{{ driver.age }}</td>
-        <td>{{ genderEnum[driver.gender] }}</td>
+      <tr *ngFor="let car of cars">
+        <td>{{ car.title }}</td>
+        <td>{{ car.productionYear | date:"YYYY" }}</td>
+        <td>{{ car.driverFullName }}</td>
         <td>
-          <a [routerLink]="['details', driver.id]" title="Details">
+          <a [routerLink]="['details', car.id]" title="Details">
             <i class="fa-solid fa-circle-info text-info"></i>
           </a>
-          <a [routerLink]="['edit', driver.id]" title="Edit">
+          <a [routerLink]="['edit', car.id]" title="Edit">
             <i class="fa-solid fa-pen-to-square ms-2"></i>
           </a>
-          <a class="pointer" title="Delete" (click)="openDeleteModal(deleteModalTemplate, driver)">
+          <!-- <a class="pointer" title="Delete" (click)="openDeleteModal(deleteModalTemplate, car)">
             <i class="fa-solid fa-trash ms-2 text-danger"></i>
-          </a>
+          </a> -->
         </td>
       </tr>
     </tbody>
@@ -40,17 +38,17 @@
     </div>
   </div>
 
-  <ng-template #deleteModalTemplate let-modal>
+  <!-- <ng-template #deleteModalTemplate let-modal>
     <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">Delete Driver</h4>
+      <h4 class="modal-title" id="modal-basic-title">Delete Car</h4>
     </div>
     <div class="modal-body">
-      <h5>Are you sure you want to delete <span class="text-danger ">{{ selectedDriver.fullName }}</span>?</h5>
+      <h5>Are you sure you want to delete <span class="text-danger ">{{ selectedCar.fullName }}</span>?</h5>
     </div>
     <div class="modal-footer">
       <button class="btn btn-secondary" (click)="modal.dismiss()">Cancel</button>
       <button type="button" class="btn btn-danger" (click)="modal.close('deleted')">Delete</button>
     </div>
-  </ng-template>
+  </ng-template> -->
 
 </div>

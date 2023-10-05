@@ -27,7 +27,7 @@ namespace MB.SimTaxiPro.WebApi.Controllers
         #region Actions
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<BookingListDto>>> GetBooking()
+        public async Task<ActionResult<IEnumerable<BookingDto>>> GetBooking()
         {
             var bookings = await _context
                                 .Bookings
@@ -35,7 +35,7 @@ namespace MB.SimTaxiPro.WebApi.Controllers
                                 .Include(b => b.Driver)
                                 .ToListAsync();
 
-            var bookingDtos = _mapper.Map<List<BookingListDto>>(bookings);
+            var bookingDtos = _mapper.Map<List<BookingDto>>(bookings);
 
             return bookingDtos;
         }

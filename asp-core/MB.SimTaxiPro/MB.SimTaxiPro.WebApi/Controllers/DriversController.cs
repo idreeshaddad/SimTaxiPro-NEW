@@ -27,13 +27,13 @@ namespace MB.SimTaxiPro.WebApi.Controllers
         #region Actions
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<DriverListDto>>> GetDrivers()
+        public async Task<ActionResult<IEnumerable<DriverDto>>> GetDrivers()
         {
             var drivers = await _context
                             .Drivers
                             .ToListAsync();
 
-            var driverDtos = _mapper.Map<List<DriverListDto>>(drivers);
+            var driverDtos = _mapper.Map<List<DriverDto>>(drivers);
 
             return driverDtos;                            
         }
@@ -126,15 +126,17 @@ namespace MB.SimTaxiPro.WebApi.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteDriver(int id)
         {
-            if (_context.Drivers == null)
-            {
-                return NotFound();
-            }
-            var driver = await _context.Drivers.FindAsync(id);
+            var driver = await _context
+                                .Drivers
+                                .Include(driver => driver.Cars)
+                                .Include(driver => driver.Bookings)
+                                .Where(driver => driver.Id == id)
+                                .SingleOrDefaultAsync();
+
             if (driver == null)
             {
                 return NotFound();
-            }
+            } 
 
             _context.Drivers.Remove(driver);
             await _context.SaveChangesAsync();

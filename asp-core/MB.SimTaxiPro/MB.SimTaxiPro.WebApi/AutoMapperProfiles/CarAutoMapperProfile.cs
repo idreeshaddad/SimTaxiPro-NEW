@@ -8,7 +8,7 @@ namespace MB.SimTaxiPro.WebApi.AutoMapperProfiles
     {
         public CarAutoMapperProfile()
         {
-            CreateMap<Car, CarListDto>();
+            CreateMap<Car, CarDto>();
             CreateMap<Car, CarDetailsDto>();
             CreateMap<Car, CreateUpdateCarDto>().ReverseMap();
         }

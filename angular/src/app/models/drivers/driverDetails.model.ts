@@ -1,4 +1,4 @@
-import { CarList } from "../cars/carList.model";
+import { Car } from "../cars/car.model";
 
 export interface DriverDetails {
   id: number;
@@ -6,5 +6,5 @@ export interface DriverDetails {
   ssn: string;
   age: number,
   gender: number;
-  cars: CarList[];
+  cars: Car[];
 }

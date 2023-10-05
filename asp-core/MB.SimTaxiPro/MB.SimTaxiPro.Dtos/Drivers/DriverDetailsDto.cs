@@ -13,7 +13,7 @@ namespace MB.SimTaxiPro.Dtos.Drivers
     {
         public DriverDetailsDto()
         {
-            Cars = new List<CarListDto>();
+            Cars = new List<CarDto>();
         }
 
         public int Id { get; set; }
@@ -22,6 +22,6 @@ namespace MB.SimTaxiPro.Dtos.Drivers
         public int Age { get; set; }
         public Gender Gender { get; set; }
 
-        public List<CarListDto> Cars { get; set; }
+        public List<CarDto> Cars { get; set; }
     }
 }

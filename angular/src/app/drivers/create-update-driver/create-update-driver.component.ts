@@ -18,6 +18,7 @@ export class CreateUpdateDriverComponent implements OnInit {
   driverId!: number;
   driverForm!: FormGroup;
   pageMode: PageMode = PageMode.Create;
+  driverFullName!: string;
 
   constructor(
     private driverSvc: DriverService,
@@ -95,6 +96,7 @@ export class CreateUpdateDriverComponent implements OnInit {
     this.driverSvc.getDriverForEdit(this.driverId).subscribe({
       next: (driverFromApi: CreateUpdateDriver) => {
         this.driverForm.patchValue(driverFromApi);
+        this.driverFullName = driverFromApi.fullName;
       },
       error: (err: HttpErrorResponse) => {
         console.log(err);

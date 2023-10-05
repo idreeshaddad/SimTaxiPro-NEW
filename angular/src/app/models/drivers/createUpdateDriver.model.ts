@@ -7,4 +7,5 @@ export interface CreateUpdateDriver {
   ssn: string;
   dateOfBirth: string,
   gender: Gender;
+  fullName: string;
 }

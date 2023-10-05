@@ -1,4 +1,4 @@
-export interface DriverList {
+export interface Driver {
   id: number;
   fullName: string;
   ssn: string;

@@ -13,6 +13,6 @@ namespace MB.SimTaxiPro.Dtos.Bookings
 
         public string DriverFullName { get; set; }
 
-        public List<PassengerListDto> Passengers { get; set; }
+        public List<PassengerDto> Passengers { get; set; }
     }
 }

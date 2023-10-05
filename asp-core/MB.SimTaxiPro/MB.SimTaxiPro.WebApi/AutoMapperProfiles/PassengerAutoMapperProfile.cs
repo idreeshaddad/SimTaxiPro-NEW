@@ -8,7 +8,7 @@ namespace MB.SimTaxiPro.WebApi.AutoMapperProfiles
     {
         public PassengerAutoMapperProfile()
         {
-            CreateMap<Passenger, PassengerListDto>();
+            CreateMap<Passenger, PassengerDto>();
             CreateMap<Passenger, PassengerDetailsDto>();
             CreateMap<Passenger, CreateUpdatePassengerDto>().ReverseMap();
         }

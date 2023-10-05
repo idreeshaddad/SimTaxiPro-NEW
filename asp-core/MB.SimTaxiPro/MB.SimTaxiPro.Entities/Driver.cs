@@ -8,6 +8,7 @@ namespace MB.SimTaxiPro.Entities
         public Driver()
         {
             Cars = new List<Car>();
+            Bookings = new List<Booking>();
         }
 
         public int Id { get; set; }
@@ -17,6 +18,10 @@ namespace MB.SimTaxiPro.Entities
         public DateTime DateOfBirth { get; set; }
         public Gender Gender { get; set; }
 
+        public List<Booking> Bookings { get; set; }
+        public List<Car> Cars { get; set; }
+
+
         [NotMapped]
         public string FullName
         {
@@ -25,9 +30,6 @@ namespace MB.SimTaxiPro.Entities
                 return $"{FirstName} {LastName}";
             }
         }
-
-
-        public List<Car> Cars { get; set; }
 
         [NotMapped]
         public int Age

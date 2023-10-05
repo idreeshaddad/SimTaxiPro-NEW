@@ -8,7 +8,7 @@ namespace MB.SimTaxiPro.WebApi.AutoMapperProfiles
     {
         public BookingAutoMapperProfile()
         {
-            CreateMap<Booking, BookingListDto>();
+            CreateMap<Booking, BookingDto>();
             CreateMap<Booking, BookingDetailsDto>();
             CreateMap<CreateUpdateBookingDto, Booking>().ReverseMap();
         }

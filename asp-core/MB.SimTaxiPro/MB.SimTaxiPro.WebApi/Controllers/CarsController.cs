@@ -27,14 +27,14 @@ namespace MB.SimTaxiPro.WebApi.Controllers
         #region Actions
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<CarListDto>>> GetCars()
+        public async Task<ActionResult<IEnumerable<CarDto>>> GetCars()
         {
             var cars = await _context
                                 .Cars
                                 .Include(car => car.Driver)
                                 .ToListAsync();
 
-            var carDtos = _mapper.Map<List<CarListDto>>(cars);
+            var carDtos = _mapper.Map<List<CarDto>>(cars);
 
             return carDtos;
         }

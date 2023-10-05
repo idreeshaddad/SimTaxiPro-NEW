@@ -4,7 +4,7 @@
       <span>Create a new driver</span>
     </ng-container>
     <ng-template #elsePageHeader>
-      <span>Edit Driver</span>
+      <span>Edit Driver </span> <span class="text-primary">{{ driverFullName }}</span>
     </ng-template>
 
   </h1>
@@ -43,7 +43,13 @@
     <div class="mt-4">
       <button class="btn btn-secondary" [routerLink]="['/drivers']">Cancel</button>
       <button class="btn btn-primary ms-2" type="submit">
-        Create
+        <ng-container *ngIf="pageMode == pageModeEnum.Create; else submitButtonEdit">
+          Create
+        </ng-container>
+        <ng-template #submitButtonEdit>
+          Save
+        </ng-template>
+
       </button>
     </div>
 

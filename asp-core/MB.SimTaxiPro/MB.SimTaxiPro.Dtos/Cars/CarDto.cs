@@ -1,6 +1,6 @@
 ﻿namespace MB.SimTaxiPro.Dtos.Cars
 {
-    public class CarListDto
+    public class CarDto
     {
         public int Id { get; set; }
         public string Title { get; set; }

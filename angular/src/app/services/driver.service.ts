@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { DriverList } from '../models/drivers/driverList.model';
+import { Observable, Observer } from 'rxjs';
+import { Driver } from '../models/drivers/driver.model';
 import { DriverDetails } from '../models/drivers/driverDetails.model';
 import { CreateUpdateDriver } from '../models/drivers/createUpdateDriver.model';
 
@@ -14,9 +14,9 @@ export class DriverService {
 
   constructor(private http: HttpClient) { }
 
-  getDrivers(): Observable<DriverList[]> {
+  getDrivers(): Observable<Driver[]> {
 
-    return this.http.get<DriverList[]>(`${this.apiUrl}/GetDrivers`);
+    return this.http.get<Driver[]>(`${this.apiUrl}/GetDrivers`);
   }
 
   getDriver(id: number): Observable<DriverDetails> {
@@ -37,5 +37,10 @@ export class DriverService {
   editDriver(id: number, driver: CreateUpdateDriver): Observable<any> {
 
     return this.http.put<CreateUpdateDriver>(`${this.apiUrl}/EditDriver/${id}`, driver);
+  }
+
+  deleteDriver(id: number): Observable<any> {
+
+    return this.http.delete(`${this.apiUrl}/DeleteDriver/${id}`);
   }
 }

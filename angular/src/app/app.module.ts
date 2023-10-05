@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { DriverDetailsComponent } from './drivers/driver-details/driver-details.component';
 import { CreateUpdateDriverComponent } from './drivers/create-update-driver/create-update-driver.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CarsComponent } from './cars/cars.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     DriversComponent,
     DriverDetailsComponent,
     CreateUpdateDriverComponent,
+    CarsComponent,
   ],
   imports: [
     BrowserModule,
