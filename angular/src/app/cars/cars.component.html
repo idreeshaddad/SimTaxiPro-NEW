@@ -16,7 +16,14 @@
       <tr *ngFor="let car of cars">
         <td>{{ car.title }}</td>
         <td>{{ car.productionYear | date:"YYYY" }}</td>
-        <td>{{ car.driverFullName }}</td>
+        <td>
+          <ng-container *ngIf="car.driverFullName; else elseDriverNotAssignedTemplate">
+            <span class="fw-bold">{{ car.driverFullName }}</span>
+          </ng-container>
+          <ng-template #elseDriverNotAssignedTemplate>
+            <i>Not Assigned</i>
+          </ng-template>
+        </td>
         <td>
           <a [routerLink]="['details', car.id]" title="Details">
             <i class="fa-solid fa-circle-info text-info"></i>

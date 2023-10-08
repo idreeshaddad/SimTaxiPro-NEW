@@ -25,10 +25,15 @@
     <div class="col-md-4">{{ car?.productionYear | date:'YYYY' }}</div>
   </div>
 
-  <div class="row mt-2" *ngIf="car?.driverFullName?.length != 0">
+  <div class="row mt-2">
     <div class="col-md-2">Assigned to</div>
     <div class="col-md-4">
-      <span class="fw-bold">{{ car?.driverFullName }}</span>
+      <ng-container *ngIf="car?.driverFullName; else elseDriverNotAssignedTemplate">
+        <span class="fw-bold">{{ car?.driverFullName }}</span>
+      </ng-container>
+      <ng-template #elseDriverNotAssignedTemplate>
+        <i>Not Assigned</i>
+      </ng-template>
     </div>
   </div>
 

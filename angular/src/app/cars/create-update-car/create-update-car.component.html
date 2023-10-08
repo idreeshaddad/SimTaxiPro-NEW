@@ -1,5 +1,12 @@
 <div class="container">
-  <h1>Create Car</h1>
+  <h1>
+    <ng-container *ngIf="pageMode == pageModeEnum.Create; else elsePageTitleTemplate">
+      Create Car
+    </ng-container>
+    <ng-template #elsePageTitleTemplate>
+      Edit Car <span class="text-primary">{{ carTitle }}</span>
+    </ng-template>
+  </h1>
 
   <hr>
   <form [formGroup]="carForm" (ngSubmit)="submitForm()">
@@ -40,7 +47,12 @@
     <div class="mt-4">
       <button class="btn btn-secondary" [routerLink]="['/cars']">Cancel</button>
       <button type="submit" class="btn btn-primary ms-2">
-        Create
+        <ng-container *ngIf="pageMode == pageModeEnum.Create; else elseButtonTemplate">
+          Create
+        </ng-container>
+        <ng-template #elseButtonTemplate>
+          Save
+        </ng-template>
       </button>
     </div>
 
