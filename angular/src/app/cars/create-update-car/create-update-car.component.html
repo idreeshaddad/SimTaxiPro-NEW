@@ -1,0 +1,49 @@
+<div class="container">
+  <h1>Create Car</h1>
+
+  <hr>
+  <form [formGroup]="carForm" (ngSubmit)="submitForm()">
+
+    <div class="row">
+      <div class="col-md-6">
+
+        <div class="form-floating">
+          <input type="text" class="form-control" id="manufacturer" placeholder="Manufacturer"
+            formControlName="manufacturer">
+          <label for="manufacturer">Manufacturer</label>
+        </div>
+
+        <div class="form-floating mt-3">
+          <input type="text" class="form-control" id="model" placeholder="Model" formControlName="model">
+          <label for="model">Model</label>
+        </div>
+
+      </div>
+
+      <div class="col-md-6">
+
+        <div class="form-floating">
+          <input type="text" class="form-control" id="plateNumber" placeholder="Plate Number"
+            formControlName="plateNumber">
+          <label for="plateNumber">Plate Number</label>
+        </div>
+
+        <div class="form-floating mt-3">
+          <input type="datetime-local" class="form-control" id="productionYear" placeholder="Production Year"
+            formControlName="productionYear">
+          <label for="productionYear">Production Year</label>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="mt-4">
+      <button class="btn btn-secondary" [routerLink]="['/cars']">Cancel</button>
+      <button type="submit" class="btn btn-primary ms-2">
+        Create
+      </button>
+    </div>
+
+  </form>
+
+</div>

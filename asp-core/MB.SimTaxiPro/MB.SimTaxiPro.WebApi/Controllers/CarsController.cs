@@ -58,6 +58,22 @@ namespace MB.SimTaxiPro.WebApi.Controllers
             return carDetailsDto;
         }
 
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<CreateUpdateCarDto>> GetCarForEdit(int id)
+        {
+            var car = await _context.Cars.FindAsync(id);
+
+            if (car == null)
+            {
+                return NotFound();
+            }
+
+            var createUpdateCarDto = _mapper.Map<CreateUpdateCarDto>(car);
+
+            return createUpdateCarDto;
+        }
+
         [HttpPut("{id}")]
         public async Task<IActionResult> EditCar(int id, CreateUpdateCarDto createUpdateCarDto)
         {
@@ -105,7 +121,7 @@ namespace MB.SimTaxiPro.WebApi.Controllers
             _context.Cars.Add(car);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("CreateCar", new { id = car.Id }, car);
+            return Ok();
         }
 
         [HttpDelete("{id}")]

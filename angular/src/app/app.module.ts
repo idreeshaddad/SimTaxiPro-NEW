@@ -12,6 +12,7 @@ import { CreateUpdateDriverComponent } from './drivers/create-update-driver/crea
 import { ReactiveFormsModule } from '@angular/forms';
 import { CarsComponent } from './cars/cars.component';
 import { CarDetailsComponent } from './cars/car-details/car-details.component';
+import { CreateUpdateCarComponent } from './cars/create-update-car/create-update-car.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { CarDetailsComponent } from './cars/car-details/car-details.component';
     CreateUpdateDriverComponent,
     CarsComponent,
     CarDetailsComponent,
+    CreateUpdateCarComponent,
   ],
   imports: [
     BrowserModule,

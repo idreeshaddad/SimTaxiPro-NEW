@@ -7,5 +7,6 @@
         public string Model { get; set; }
         public string PlateNumber { get; set; }
         public DateTime ProductionYear { get; set; }
+        public string? Title { get; set; }
     }
 }
