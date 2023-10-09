@@ -43,7 +43,7 @@ namespace MB.SimTaxiPro.WebApi.Controllers
         {
             var passenger = await _context
                                 .Passengers
-                                //.Include(passenger => passenger.Booking)
+                                .Include(passenger => passenger.Bookings)
                                 .Where(passenger => passenger.Id == id)
                                 .SingleOrDefaultAsync();
 
@@ -55,6 +55,21 @@ namespace MB.SimTaxiPro.WebApi.Controllers
             var passengerDto = _mapper.Map<PassengerDetailsDto>(passenger);
 
             return Ok(passengerDto);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<CreateUpdatePassengerDto>> GetPassengerForEdit(int id)
+        {
+            var passenger = await _context.Passengers.FindAsync(id);
+
+            if(passenger == null)
+            {
+                return NotFound();
+            }
+
+            var passengerDto = _mapper.Map<CreateUpdatePassengerDto>(passenger);
+
+            return passengerDto;
         }
 
         [HttpPut("{id}")]
@@ -95,14 +110,14 @@ namespace MB.SimTaxiPro.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Passenger>> CreatePassenger(CreateUpdatePassengerDto passengeDto)
+        public async Task<ActionResult> CreatePassenger(CreateUpdatePassengerDto passengeDto)
         {
             var passenger = _mapper.Map<Passenger>(passengeDto);
 
             _context.Passengers.Add(passenger);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetPassenger", new { id = passenger.Id }, passenger);
+            return Ok();
         }
 
         [HttpDelete("{id}")]

@@ -28,4 +28,8 @@
     <ProjectReference Include="..\MB.SimTaxiPro.EntityFrameworkCore\MB.SimTaxiPro.EntityFrameworkCore.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\NewFolder\" />
+  </ItemGroup>
+
 </Project>

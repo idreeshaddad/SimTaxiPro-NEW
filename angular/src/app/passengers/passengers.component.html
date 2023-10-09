@@ -1,0 +1,50 @@
+<div class="container">
+  <h1>Passengers</h1>
+  <hr>
+  <button class="btn btn-primary" [routerLink]="['create']">Create new Passenger</button>
+  <hr>
+
+  <table class="table table-hoverable table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Phone Number</th>
+        <th>Gender</th>
+        <th>Age</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let passenger of passengers">
+        <td>{{ passenger.fullName }}</td>
+        <td>{{ passenger.phoneNumber }}</td>
+        <td>{{ genderEnum[passenger.gender] }}</td>
+        <td>{{ passenger.age }}</td>
+        <td>
+          <a [routerLink]="['details', passenger.id]" title="Details">
+            <i class="fa-solid fa-circle-info text-info"></i>
+          </a>
+          <a [routerLink]="['edit', passenger.id]" title="Edit">
+            <i class="fa-solid fa-pen-to-square ms-2"></i>
+          </a>
+          <a class="pointer" title="Delete" (click)="openDeleteModal(deleteModalTemplate, passenger)">
+            <i class="fa-solid fa-trash ms-2 text-danger"></i>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #deleteModalTemplate let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Delete Passenger</h4>
+  </div>
+  <div class="modal-body">
+    <h5>Are you sure you want to delete <span class="text-danger ">{{ selectedPassenger.fullName }}</span>?</h5>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-secondary" (click)="modal.dismiss()">Cancel</button>
+    <button type="button" class="btn btn-danger" (click)="modal.close('deleted')">Delete</button>
+  </div>
+</ng-template>

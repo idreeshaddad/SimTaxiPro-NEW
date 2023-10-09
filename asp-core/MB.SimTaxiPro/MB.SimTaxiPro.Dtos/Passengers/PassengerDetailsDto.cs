@@ -1,4 +1,5 @@
-﻿using MB.SimTaxiPro.Utils.Enums;
+﻿using MB.SimTaxiPro.Dtos.Bookings;
+using MB.SimTaxiPro.Utils.Enums;
 
 namespace MB.SimTaxiPro.Dtos.Passengers
 {
@@ -11,6 +12,6 @@ namespace MB.SimTaxiPro.Dtos.Passengers
 
         public int Age { get; set; }
 
-        //public List<BookingListDto> Booking { get; set; }
+        public List<BookingDto> Booking { get; set; }
     }
 }

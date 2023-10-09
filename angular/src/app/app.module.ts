@@ -13,6 +13,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CarsComponent } from './cars/cars.component';
 import { CarDetailsComponent } from './cars/car-details/car-details.component';
 import { CreateUpdateCarComponent } from './cars/create-update-car/create-update-car.component';
+import { PassengersComponent } from './passengers/passengers.component';
+import { PassengerDetailsComponent } from './passengers/passenger-details/passenger-details.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { CreateUpdateCarComponent } from './cars/create-update-car/create-update
     CarsComponent,
     CarDetailsComponent,
     CreateUpdateCarComponent,
+    PassengersComponent,
+    PassengerDetailsComponent,
   ],
   imports: [
     BrowserModule,

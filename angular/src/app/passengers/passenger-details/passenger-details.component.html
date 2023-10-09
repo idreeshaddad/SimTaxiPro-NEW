@@ -1,0 +1,57 @@
+<div class="container">
+
+  <h1>
+    Passenger Details: <span class="text-primary">{{ passenger?.fullName }}</span>
+  </h1>
+  <hr>
+
+  <div class="row">
+    <div class="col-md-2">Id</div>
+    <div class="col-md-4">{{ passenger?.id }}</div>
+  </div>
+
+  <div class="row mt-2">
+    <div class="col-md-2">Phone Number</div>
+    <div class="col-md-4">{{ passenger?.phoneNumber }}</div>
+  </div>
+
+  <div class="row mt-2">
+    <div class="col-md-2">Age</div>
+    <div class="col-md-4">{{ passenger?.age }}</div>
+  </div>
+
+  <div class="row mt-2">
+    <div class="col-md-2">Gender</div>
+    <div class="col-md-4">{{ genderEnum[passenger.gender] }}</div>
+  </div>
+
+  <div class="mt-4">
+    <button class="btn btn-secondary" [routerLink]="['/passengers']">Back</button>
+    <button class="btn btn-primary ms-2" [routerLink]="['/passengers/edit', passenger?.id]">Edit</button>
+  </div>
+
+  <hr>
+  <h5>Passenger Bookings</h5>
+  <table class="table table-striped mt-2">
+    <thead>
+      <tr>
+        <th>From</th>
+        <th>To</th>
+        <th>Pickup Time</th>
+        <th>Car</th>
+        <th>Driver</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let booking of passenger?.bookings">
+        <td>{{ booking?.from }}</td>
+        <td>{{ booking.to }}</td>
+        <td>{{ booking.pickupTime | date:'medium' }}</td>
+        <td>{{ booking.carTitle }}</td>
+        <td>{{ booking.driverFullName }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+</div>

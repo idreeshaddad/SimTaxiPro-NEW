@@ -12,6 +12,6 @@ namespace MB.SimTaxiPro.Dtos.Passengers
         public DateTime DateofBirth { get; set; }
         public Gender Gender { get; set; }
 
-        public string FullName { get; set; }
+        public string? FullName { get; set; }
     }
 }
