@@ -15,6 +15,7 @@ import { CarDetailsComponent } from './cars/car-details/car-details.component';
 import { CreateUpdateCarComponent } from './cars/create-update-car/create-update-car.component';
 import { PassengersComponent } from './passengers/passengers.component';
 import { PassengerDetailsComponent } from './passengers/passenger-details/passenger-details.component';
+import { CreateUpdatePassengerComponent } from './passengers/create-update-passenger/create-update-passenger.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { PassengerDetailsComponent } from './passengers/passenger-details/passen
     CreateUpdateCarComponent,
     PassengersComponent,
     PassengerDetailsComponent,
+    CreateUpdatePassengerComponent,
   ],
   imports: [
     BrowserModule,

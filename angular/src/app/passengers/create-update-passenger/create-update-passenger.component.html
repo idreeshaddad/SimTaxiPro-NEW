@@ -1,0 +1,74 @@
+<div class="container">
+  <h1>
+    <ng-container *ngIf="pageMode == pageModeEnum.Create; else elsePageTitleTemplate">
+      Create Passenger
+    </ng-container>
+    <ng-template #elsePageTitleTemplate>
+      Edit Passenger: <span class="text-primary">{{ passengerFullName }}</span>
+    </ng-template>
+  </h1>
+
+  <hr>
+
+  <form [formGroup]="passengerForm" (ngSubmit)="submitForm()">
+
+    <div class="row">
+
+      <div class="col-md-6">
+
+        <div class="form-floating">
+          <input type="text" class="form-control" id="firstName" placeholder="First Name" formControlName="firstName">
+          <label for="firstName">First Name</label>
+        </div>
+
+        <div class="form-floating mt-3">
+          <input type="text" class="form-control" id="lastName" placeholder="Last Name" formControlName="lastName">
+          <label for="lastName">Last Name</label>
+        </div>
+
+        <div class="form-floating mt-3">
+          <input type="datetime-local" class="form-control" id="dateOfBirth" placeholder="Date of Birth"
+            formControlName="dateOfBirth">
+          <label for="dateOfBirth">Date of Birth</label>
+        </div>
+
+      </div>
+
+      <div class="col-md-6">
+
+        <div class="form-floating">
+          <input type="text" class="form-control" id="phoneNumber" placeholder="Phone Number"
+            formControlName="phoneNumber">
+          <label for="phoneNumber">Phone Number</label>
+        </div>
+
+        <div class="form-floating mt-3">
+          <select class="form-select" id="gender" formControlName="gender">
+            <option value="0">Male</option>
+            <option value="1">Female</option>
+          </select>
+          <label for="gender">Gender</label>
+        </div>
+
+      </div>
+
+      <div class="mt-4">
+
+        <button class="btn btn-secondary" [routerLink]="['/passengers']">Cancel</button>
+
+        <button type="submit" class="btn btn-primary ms-2">
+          <ng-container *ngIf="pageMode == pageModeEnum.Create; else elseSubmitButtonTemplate">
+            Create
+          </ng-container>
+          <ng-template #elseSubmitButtonTemplate>
+            Save
+          </ng-template>
+        </button>
+      </div>
+
+
+    </div>
+
+  </form>
+
+</div>
