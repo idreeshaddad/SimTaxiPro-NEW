@@ -46,7 +46,7 @@
       <tr *ngFor="let booking of passenger?.bookings">
         <td>{{ booking?.from }}</td>
         <td>{{ booking.to }}</td>
-        <td>{{ booking.pickupTime | date:'medium' }}</td>
+        <td>{{ booking.pickUpTime | date:'medium' }}</td>
         <td>{{ booking.carTitle }}</td>
         <td>{{ booking.driverFullName }}</td>
       </tr>

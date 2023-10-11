@@ -10,6 +10,7 @@ import { CreateUpdateCarComponent } from './cars/create-update-car/create-update
 import { PassengersComponent } from './passengers/passengers.component';
 import { PassengerDetailsComponent } from './passengers/passenger-details/passenger-details.component';
 import { CreateUpdatePassengerComponent } from './passengers/create-update-passenger/create-update-passenger.component';
+import { BookingsComponent } from './bookings/bookings.component';
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
@@ -27,6 +28,8 @@ const routes: Routes = [
   { path: "passengers/details/:id", component: PassengerDetailsComponent },
   { path: "passengers/create", component: CreateUpdatePassengerComponent },
   { path: "passengers/edit/:id", component: CreateUpdatePassengerComponent },
+
+  { path: "bookings", component: BookingsComponent }
 ];
 
 @NgModule({

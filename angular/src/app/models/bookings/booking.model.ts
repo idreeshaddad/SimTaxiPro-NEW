@@ -2,7 +2,7 @@ export interface Booking {
   id: number;
   from: string;
   to: string;
-  pickupTime: string;
+  pickUpTime: string;
   carTitle: string;
   driverFullName: string;
 }

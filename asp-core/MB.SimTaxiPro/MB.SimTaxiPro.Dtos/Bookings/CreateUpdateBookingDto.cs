@@ -11,6 +11,6 @@
 
         public int? DriverId { get; set; }
 
-        public List<int> PassengerIds { get; set; }
+        public List<int> PassengerIds { get; set; } = new List<int>();
     }
 }

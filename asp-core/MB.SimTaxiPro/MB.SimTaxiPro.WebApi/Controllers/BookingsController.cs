@@ -27,7 +27,7 @@ namespace MB.SimTaxiPro.WebApi.Controllers
         #region Actions
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<BookingDto>>> GetBooking()
+        public async Task<ActionResult<IEnumerable<BookingDto>>> GetBookings()
         {
             var bookings = await _context
                                 .Bookings
@@ -57,6 +57,26 @@ namespace MB.SimTaxiPro.WebApi.Controllers
             }
 
             var bookingDto = _mapper.Map<BookingDetailsDto>(booking);
+
+            return bookingDto;
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<CreateUpdateBookingDto>> GetBookingForEdit(int id)
+        {
+            var booking = await _context
+                                    .Bookings
+                                    .Include(booking => booking.Car)
+                                    .Include (booking => booking.Driver)
+                                    .Include(booking => booking.Passengers)
+                                    .SingleOrDefaultAsync(booking => booking.Id == id);
+
+            if (booking == null)
+            {
+                return NotFound();
+            }
+
+            var bookingDto = _mapper.Map<CreateUpdateBookingDto>(booking);
 
             return bookingDto;
         }
@@ -91,7 +111,7 @@ namespace MB.SimTaxiPro.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Booking>> CreateBooking(CreateUpdateBookingDto bookingDto)
+        public async Task<IActionResult> CreateBooking(CreateUpdateBookingDto bookingDto)
         {
             var booking = _mapper.Map<Booking>(bookingDto);
 
@@ -100,7 +120,7 @@ namespace MB.SimTaxiPro.WebApi.Controllers
             _context.Bookings.Add(booking);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetBooking", new { id = bookingDto.Id }, bookingDto);
+            return Ok();
         }
 
         [HttpDelete("{id}")]
