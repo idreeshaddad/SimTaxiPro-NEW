@@ -1,4 +1,6 @@
-﻿namespace MB.SimTaxiPro.Dtos.Bookings
+﻿using MB.SimTaxiPro.Utils.Enums;
+
+namespace MB.SimTaxiPro.Dtos.Bookings
 {
     public class CreateUpdateBookingDto
     {
@@ -12,5 +14,9 @@
         public int? DriverId { get; set; }
 
         public List<int> PassengerIds { get; set; } = new List<int>();
+
+        public bool IsPaid { get; set; }
+        public PaymentMethod PaymentMethod { get; set; }
+        public double Price { get; set; }
     }
 }

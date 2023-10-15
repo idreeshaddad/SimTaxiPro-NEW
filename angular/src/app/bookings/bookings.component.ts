@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Booking } from '../models/bookings/booking.model';
 import { BookingService } from '../services/booking.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { PaymentMethod } from '../enums/paymenetMethod.enum';
 
 @Component({
   selector: 'app-bookings',
@@ -11,6 +12,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class BookingsComponent implements OnInit {
 
   bookings!: Booking[];
+
+  paymentMethodEnum = PaymentMethod;
 
   constructor(
     private bookingSvc: BookingService

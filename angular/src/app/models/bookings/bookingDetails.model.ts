@@ -1,3 +1,4 @@
+import { PaymentMethod } from "src/app/enums/paymenetMethod.enum";
 import { Passenger } from "../passengers/passenger.model";
 
 export interface BookingDetails {
@@ -8,4 +9,7 @@ export interface BookingDetails {
   carTitle: string;
   driverFullName: string;
   passengers: Passenger[];
+  price: number;
+  isPaid: boolean;
+  paymentMethod: PaymentMethod;
 }

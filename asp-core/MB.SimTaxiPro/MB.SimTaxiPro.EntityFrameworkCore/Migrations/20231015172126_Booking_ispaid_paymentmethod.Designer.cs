@@ -4,6 +4,7 @@ using MB.SimTaxiPro.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MB.SimTaxiPro.EntityFrameworkCore.Migrations
 {
     [DbContext(typeof(SimTaxiProDbContext))]
-    partial class SimTaxiProDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231015172126_Booking_ispaid_paymentmethod")]
+    partial class Booking_ispaid_paymentmethod
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -63,9 +66,6 @@ namespace MB.SimTaxiPro.EntityFrameworkCore.Migrations
 
                     b.Property<DateTime>("PickUpTime")
                         .HasColumnType("datetime2");
-
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
 
                     b.Property<string>("To")
                         .IsRequired()

@@ -1,3 +1,5 @@
+import { PaymentMethod } from "src/app/enums/paymenetMethod.enum";
+
 export interface Booking {
   id: number;
   from: string;
@@ -5,4 +7,7 @@ export interface Booking {
   pickUpTime: string;
   carTitle: string;
   driverFullName: string;
+  price: number;
+  isPaid: boolean;
+  paymentMethod: PaymentMethod;
 }
