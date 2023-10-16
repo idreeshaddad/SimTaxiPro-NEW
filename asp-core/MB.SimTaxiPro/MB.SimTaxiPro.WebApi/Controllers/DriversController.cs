@@ -4,6 +4,7 @@ using MB.SimTaxiPro.Entities;
 using MB.SimTaxiPro.EntityFrameworkCore;
 using AutoMapper;
 using MB.SimTaxiPro.Dtos.Drivers;
+using MB.SimTaxiPro.Dtos;
 
 namespace MB.SimTaxiPro.WebApi.Controllers
 {
@@ -35,7 +36,7 @@ namespace MB.SimTaxiPro.WebApi.Controllers
 
             var driverDtos = _mapper.Map<List<DriverDto>>(drivers);
 
-            return driverDtos;                            
+            return driverDtos;
         }
 
         [HttpGet("{id}")]
@@ -136,7 +137,7 @@ namespace MB.SimTaxiPro.WebApi.Controllers
             if (driver == null)
             {
                 return NotFound();
-            } 
+            }
 
             _context.Drivers.Remove(driver);
             await _context.SaveChangesAsync();
@@ -192,6 +193,21 @@ namespace MB.SimTaxiPro.WebApi.Controllers
 
             return Ok();
         }
+
+        [HttpGet]
+        public async Task<ActionResult<List<LookupDto>>> GetDriversLookup() 
+        {
+            var driversLookup = await _context
+                                        .Drivers
+                                        .Select(driver => new LookupDto()
+                                        {
+                                            Id = driver.Id,
+                                            Text = driver.FullName
+                                        })
+                                        .ToListAsync();
+
+            return Ok(driversLookup);
+        } 
 
         #endregion
 

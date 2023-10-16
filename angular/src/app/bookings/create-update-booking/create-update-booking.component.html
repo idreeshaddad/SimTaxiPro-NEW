@@ -1,0 +1,70 @@
+<div class="container">
+  <h1>
+    <ng-container *ngIf="pageMode == pageModeEnum.Create; else elsePageModeTemplate">
+      Create Booking
+    </ng-container>
+    <ng-template #elsePageModeTemplate>
+      Edit Booking #<span class="text-primary">{{ bookingIdNumber }}</span>
+    </ng-template>
+  </h1>
+
+  <hr>
+
+  <form [formGroup]="bookingForm">
+
+    <div class="row">
+      <div class="col-md-6">
+
+        <div class="form-floating">
+          <input type="text" class="form-control" id="from" placeholder="From" formControlName="from">
+          <label for="from">From</label>
+        </div>
+
+        <div class="form-floating mt-3">
+          <input type="text" class="form-control" id="to" placeholder="To" formControlName="to">
+          <label for="to">To</label>
+        </div>
+
+        <div class="form-floating mt-3">
+          <input type="datetime-local" class="form-control" id="pickUpTime" placeholder="Production Year"
+            formControlName="pickUpTime">
+          <label for="pickUpTime">pickUp Time</label>
+        </div>
+
+        <div class="form-floating mt-3">
+          <input type="text" class="form-control" id="price" placeholder="Price" formControlName="price">
+          <label for="price">Price</label>
+        </div>
+
+        <div class="form-check mt-3">
+          <input class="form-check-input" type="checkbox" id="isPaid" formControlName="isPaid">
+          <label class="form-check-label" for="isPaid">
+            Paid
+          </label>
+        </div>
+
+      </div>
+      <div class="col-md-6">
+
+        <div class="form-floating">
+          <select class="form-select" id="paymentMethod" formControlName="paymentMethod">
+            <option value="0">Credit Card</option>
+            <option value="1">Cash</option>
+          </select>
+          <label for="paymentMethod">Payment Method</label>
+        </div>
+
+        <div class="form-floating mt-3">
+          <select class="form-select" id="driverId" formControlName="driverId">
+            <option *ngFor="let driver of driversLookup" value="{{driver.id}}">
+              {{ driver.text }}
+            </option>
+          </select>
+          <label for="driverId">Driver</label>
+        </div>
+
+      </div>
+    </div>
+
+  </form>
+</div>

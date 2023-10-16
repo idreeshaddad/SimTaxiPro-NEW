@@ -50,10 +50,10 @@
         <td>{{ booking.carTitle }}</td>
         <td>{{ booking.driverFullName }}</td>
         <td>
-          <a [routerLink]="['details', booking.id]" title="Details">
+          <a [routerLink]="['details', booking?.id]" title="Details">
             <i class="fa-solid fa-circle-info text-info"></i>
           </a>
-          <a [routerLink]="['edit', booking.id]" title="Edit" class="ms-2">
+          <a [routerLink]="['edit', booking?.id]" title="Edit" class="ms-2">
             <i class="fa-solid fa-pen-to-square"></i>
           </a>
           <a class="pointer ms-2" title="Delete">

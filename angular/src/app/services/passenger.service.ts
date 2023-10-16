@@ -10,7 +10,7 @@ import { CreateUpdatePassenger } from '../models/passengers/createUpdatePassenge
 })
 export class PassengerService {
 
-  apiUrl: string = 'https://localhost:7138/api/Passengers';
+  private apiUrl: string = 'https://localhost:7138/api/Passengers';
 
   constructor(private http: HttpClient) { }
 

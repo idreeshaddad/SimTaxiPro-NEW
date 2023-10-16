@@ -1,16 +1,17 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, Observer } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Driver } from '../models/drivers/driver.model';
 import { DriverDetails } from '../models/drivers/driverDetails.model';
 import { CreateUpdateDriver } from '../models/drivers/createUpdateDriver.model';
+import { Lookup } from '../models/lookup.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DriverService {
 
-  apiUrl: string = 'https://localhost:7138/api/Drivers';
+  private apiUrl: string = 'https://localhost:7138/api/Drivers';
 
   constructor(private http: HttpClient) { }
 
@@ -42,5 +43,10 @@ export class DriverService {
   deleteDriver(id: number): Observable<any> {
 
     return this.http.delete(`${this.apiUrl}/DeleteDriver/${id}`);
+  }
+
+  getDriversLookup(): Observable<Lookup[]> {
+
+    return this.http.get<Lookup[]>(`${this.apiUrl}/GetDriversLookup`);
   }
 }

@@ -10,7 +10,7 @@ import { CreateUpdateBooking } from '../models/bookings/createUpdateBooking.mode
 })
 export class BookingService {
 
-  apiUrl: string = 'https://localhost:7138/api/Bookings';
+  private apiUrl: string = 'https://localhost:7138/api/Bookings';
 
   constructor(private http: HttpClient) { }
 
