@@ -3,10 +3,13 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PageMode } from 'src/app/enums/pageMode.enum';
+import { PaymentMethod } from 'src/app/enums/paymenetMethod.enum';
 import { CreateUpdateBooking } from 'src/app/models/bookings/createUpdateBooking.model';
 import { Lookup } from 'src/app/models/lookup.model';
 import { BookingService } from 'src/app/services/booking.service';
+import { CarService } from 'src/app/services/car.service';
 import { DriverService } from 'src/app/services/driver.service';
+import { PassengerService } from 'src/app/services/passenger.service';
 
 @Component({
   selector: 'app-create-update-booking',
@@ -21,15 +24,20 @@ export class CreateUpdateBookingComponent implements OnInit {
 
   pageMode: PageMode = PageMode.Create;
   pageModeEnum = PageMode;
+  paymentMethodEnum = PaymentMethod;
 
   driversLookup: Lookup[] = [];
+  carsLookup: Lookup[] = [];
+  passengersLookup: Lookup[] = [];
 
   constructor(
     private bookingSvc: BookingService,
     private activatedRoute: ActivatedRoute,
     private fb: FormBuilder,
     private router: Router,
-    private driverSvc: DriverService
+    private driverSvc: DriverService,
+    private carSvc: CarService,
+    private passengerSvc: PassengerService,
   ) { }
 
   ngOnInit(): void {
@@ -43,7 +51,20 @@ export class CreateUpdateBookingComponent implements OnInit {
       this.loadBooking();
     }
 
-    this.loadDriversLookup();
+    this.loadLookups();
+  }
+
+  submitForm(): void {
+
+    if (this.bookingForm.valid) {
+
+      if (this.pageMode == PageMode.Create) {
+        this.createBooking();
+      }
+      else {
+        this.editBooking();
+      }
+    }
   }
 
   //#region Private Functions
@@ -59,7 +80,7 @@ export class CreateUpdateBookingComponent implements OnInit {
       carId: [''],
       driverId: [''],
       price: ['', Validators.required],
-      isPaid: [''],
+      isPaid: [false],
       paymentMethod: ['', Validators.required]
     });
   }
@@ -95,11 +116,73 @@ export class CreateUpdateBookingComponent implements OnInit {
     });
   }
 
+  private loadLookups() {
+    this.loadDriversLookup();
+    this.loadPassengersLookup();
+    this.loadCarsLookup();
+  }
+
   private loadDriversLookup() {
 
     this.driverSvc.getDriversLookup().subscribe({
       next: (driversLookupFromApi: Lookup[]) => {
         this.driversLookup = driversLookupFromApi;
+      },
+      error: (err: HttpErrorResponse) => {
+        // TODO snackbar
+        alert(err);
+        console.error(err);
+      }
+    });
+  }
+
+  private loadPassengersLookup() {
+
+    this.passengerSvc.getPassengersLookup().subscribe({
+      next: (PassengersLookupFromApi: Lookup[]) => {
+        this.passengersLookup = PassengersLookupFromApi;
+      },
+      error: (err: HttpErrorResponse) => {
+        // TODO snackbar
+        alert(err);
+        console.error(err);
+      }
+    });
+  }
+
+  private loadCarsLookup() {
+
+    this.carSvc.getCarsLookup().subscribe({
+      next: (carsLookupFromApi: Lookup[]) => {
+        this.carsLookup = carsLookupFromApi;
+      },
+      error: (err: HttpErrorResponse) => {
+        // TODO snackbar
+        alert(err);
+        console.error(err);
+      }
+    });
+  }
+
+  private createBooking(): void {
+
+    this.bookingSvc.createBooking(this.bookingForm.value).subscribe({
+      next: () => {
+        this.router.navigate(['/bookings']);
+      },
+      error: (err: HttpErrorResponse) => {
+        // TODO snackbar
+        alert(err);
+        console.error(err);
+      }
+    });
+  }
+
+  private editBooking(): void {
+
+    this.bookingSvc.editBooking(this.bookingId, this.bookingForm.value).subscribe({
+      next: () => {
+        this.router.navigate(['/bookings']);
       },
       error: (err: HttpErrorResponse) => {
         // TODO snackbar

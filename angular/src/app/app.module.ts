@@ -19,6 +19,7 @@ import { CreateUpdatePassengerComponent } from './passengers/create-update-passe
 import { BookingsComponent } from './bookings/bookings.component';
 import { BookingDetailsComponent } from './bookings/booking-details/booking-details.component';
 import { CreateUpdateBookingComponent } from './bookings/create-update-booking/create-update-booking.component';
+import { EnumToArrayPipe } from './pipes/enum-to-array.pipe';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { CreateUpdateBookingComponent } from './bookings/create-update-booking/c
     BookingsComponent,
     BookingDetailsComponent,
     CreateUpdateBookingComponent,
+    EnumToArrayPipe,
   ],
   imports: [
     BrowserModule,

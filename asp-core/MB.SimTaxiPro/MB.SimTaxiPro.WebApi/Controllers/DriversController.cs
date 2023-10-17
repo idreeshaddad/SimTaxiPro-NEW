@@ -201,8 +201,8 @@ namespace MB.SimTaxiPro.WebApi.Controllers
                                         .Drivers
                                         .Select(driver => new LookupDto()
                                         {
-                                            Id = driver.Id,
-                                            Text = driver.FullName
+                                            Key = driver.Id,
+                                            Value = driver.FullName
                                         })
                                         .ToListAsync();
 

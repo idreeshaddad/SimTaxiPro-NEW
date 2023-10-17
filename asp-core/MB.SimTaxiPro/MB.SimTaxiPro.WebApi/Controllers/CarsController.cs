@@ -4,6 +4,7 @@ using MB.SimTaxiPro.Entities;
 using MB.SimTaxiPro.EntityFrameworkCore;
 using AutoMapper;
 using MB.SimTaxiPro.Dtos.Cars;
+using MB.SimTaxiPro.Dtos;
 
 namespace MB.SimTaxiPro.WebApi.Controllers
 {
@@ -137,6 +138,21 @@ namespace MB.SimTaxiPro.WebApi.Controllers
             await _context.SaveChangesAsync();
 
             return NoContent();
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<List<LookupDto>>> GetCarsLookup()
+        {
+            var carsLookup = await _context
+                                        .Cars
+                                        .Select(car => new LookupDto()
+                                        {
+                                            Key = car.Id,
+                                            Value = car.Title
+                                        })
+                                        .ToListAsync();
+
+            return Ok(carsLookup);
         }
 
         #endregion

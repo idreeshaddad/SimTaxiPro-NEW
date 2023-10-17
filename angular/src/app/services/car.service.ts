@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Car } from '../models/cars/car.model';
 import { CarDetails } from '../models/cars/carDetails.model';
 import { CreateUpdateCar } from '../models/cars/createUpdateCar.model';
+import { Lookup } from '../models/lookup.model';
 
 @Injectable({
   providedIn: 'root'
@@ -42,5 +43,10 @@ export class CarService {
   deleteCar(id: number): Observable<any> {
 
     return this.http.delete(`${this.apiUrl}/DeleteCar/${id}`);
+  }
+
+  getCarsLookup(): Observable<Lookup[]> {
+
+    return this.http.get<Lookup[]>(`${this.apiUrl}/GetCarsLookup`);
   }
 }
