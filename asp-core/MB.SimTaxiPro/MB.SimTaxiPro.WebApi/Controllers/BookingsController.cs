@@ -141,6 +141,26 @@ namespace MB.SimTaxiPro.WebApi.Controllers
 
             return NoContent();
         }
+
+        [HttpPost]
+        public async Task<IActionResult> PayBooking([FromBody]int id)
+        {
+            var booking = await _context.Bookings.FindAsync(id);
+
+            if (booking == null)
+            {
+                return NotFound();
+            }
+
+            booking.IsPaid = true;
+
+            _context.Update(booking);
+            await _context.SaveChangesAsync();
+
+            return Ok();
+        }
+
+
         #endregion
 
         #region Private Functions

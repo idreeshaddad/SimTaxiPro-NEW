@@ -1,4 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
 .wp-100 {
   width: 100px !important;
 }
@@ -9,4 +11,14 @@
 
 .pointer {
   cursor: pointer !important;
+}
+
+.custom-select2.ng-select .ng-select-container {
+  height: 56px;
+}
+
+.ng-submitted input.ng-invalid,
+.ng-submitted select.ng-invalid,
+.ng-submitted .ng-select.ng-invalid {
+  border: 1px solid crimson;
 }

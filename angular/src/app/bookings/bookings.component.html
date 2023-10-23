@@ -56,10 +56,10 @@
           <a [routerLink]="['edit', booking?.id]" title="Edit" class="ms-2">
             <i class="fa-solid fa-pen-to-square"></i>
           </a>
-          <a class="pointer ms-2" title="Delete">
+          <a class="pointer ms-2" title="Delete" (click)="openDeleteBookingModal(deleteBookingModalTemplate, booking)">
             <i class="fa-solid fa-trash text-danger"></i>
           </a>
-          <a class="pointer ms-2" title="Pay">
+          <a class="pointer ms-2" title="Pay" (click)="openPayModal(payBookingModalTemplate, booking)">
             <i class="fa-brands fa-paypal text-primary"></i>
           </a>
         </td>
@@ -67,3 +67,31 @@
     </tbody>
   </table>
 </div>
+
+<ng-template #deleteBookingModalTemplate let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Delete Booking</h4>
+  </div>
+  <div class="modal-body">
+    <h5>Are you sure you want to delete booking #<span class="text-danger">{{ selectedBooking.id }}</span>?</h5>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary " (click)="modal.dismiss()">Cancel</button>
+    <button type="button" class="btn btn-danger" (click)="modal.close('delete')">Delete</button>
+  </div>
+</ng-template>
+
+<ng-template #payBookingModalTemplate let-paymentModal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Pay Booking</h4>
+  </div>
+  <div class="modal-body">
+    <h5>Are you sure you want to pay booking
+      #<span class="text-primary">{{ selectedBooking.id }}</span>?
+    </h5>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="paymentModal.dismiss()">Cancel</button>
+    <button type="button" class="btn btn-primary" (click)="paymentModal.close('pay')">Pay</button>
+  </div>
+</ng-template>

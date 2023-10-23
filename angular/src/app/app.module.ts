@@ -20,6 +20,7 @@ import { BookingsComponent } from './bookings/bookings.component';
 import { BookingDetailsComponent } from './bookings/booking-details/booking-details.component';
 import { CreateUpdateBookingComponent } from './bookings/create-update-booking/create-update-booking.component';
 import { EnumToArrayPipe } from './pipes/enum-to-array.pipe';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { EnumToArrayPipe } from './pipes/enum-to-array.pipe';
     AppRoutingModule,
     NgbModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PageMode } from 'src/app/enums/pageMode.enum';
-import { PaymentMethod } from 'src/app/enums/paymenetMethod.enum';
+import { PaymentMethod } from 'src/app/enums/paymentMethod.enum';
 import { CreateUpdateBooking } from 'src/app/models/bookings/createUpdateBooking.model';
 import { Lookup } from 'src/app/models/lookup.model';
 import { BookingService } from 'src/app/services/booking.service';

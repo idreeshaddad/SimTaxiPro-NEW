@@ -1,4 +1,4 @@
-import { PaymentMethod } from "src/app/enums/paymenetMethod.enum";
+import { PaymentMethod } from "src/app/enums/paymentMethod.enum";
 
 export interface Booking {
   id: number;

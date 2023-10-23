@@ -2,7 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Gender } from 'src/app/enums/gender.enum';
-import { PaymentMethod } from 'src/app/enums/paymenetMethod.enum';
+import { PaymentMethod } from 'src/app/enums/paymentMethod.enum';
 import { BookingDetails } from 'src/app/models/bookings/bookingDetails.model';
 import { BookingService } from 'src/app/services/booking.service';
 
