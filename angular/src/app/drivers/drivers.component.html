@@ -29,6 +29,9 @@
           <a class="pointer" title="Delete" (click)="openDeleteModal(deleteModalTemplate, driver)">
             <i class="fa-solid fa-trash ms-2 text-danger"></i>
           </a>
+          <a class="pointer" title="Assign Cars" (click)="openAssignCarsModal(AssignCarsModalTemplate, driver)">
+            <i class="fa-solid fa-taxi ms-2"></i>
+          </a>
         </td>
       </tr>
     </tbody>
@@ -50,6 +53,21 @@
     <div class="modal-footer">
       <button class="btn btn-secondary" (click)="modal.dismiss()">Cancel</button>
       <button type="button" class="btn btn-danger" (click)="modal.close('deleted')">Delete</button>
+    </div>
+  </ng-template>
+
+  <ng-template #AssignCarsModalTemplate let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Assign Cars</h4>
+    </div>
+    <div class="modal-body">
+      <ng-select class="custom-select2" [items]="availableCarsLookup" bindLabel="value" bindValue="key"
+        (change)="updateSelectedCars()" [multiple]="true" placeholder="Select Cars">
+      </ng-select>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" (click)="modal.dismiss()">Cancel</button>
+      <button type="button" class="btn btn-primary" (click)="modal.close('assign')">Assign</button>
     </div>
   </ng-template>
 

@@ -80,7 +80,6 @@ export class CreateUpdateBookingComponent implements OnInit {
       carId: [''],
       driverId: [''],
       price: ['', Validators.required],
-      isPaid: [false],
       paymentMethod: ['', Validators.required]
     });
   }

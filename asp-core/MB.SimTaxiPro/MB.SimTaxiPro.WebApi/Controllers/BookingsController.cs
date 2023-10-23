@@ -153,6 +153,7 @@ namespace MB.SimTaxiPro.WebApi.Controllers
             }
 
             booking.IsPaid = true;
+            booking.PaymentTime = DateTime.Now;
 
             _context.Update(booking);
             await _context.SaveChangesAsync();

@@ -4,6 +4,8 @@ import { DriverService } from '../services/driver.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Gender } from '../enums/gender.enum';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { CarService } from '../services/car.service';
+import { Lookup } from '../models/lookup.model';
 
 @Component({
   selector: 'app-drivers',
@@ -18,8 +20,11 @@ export class DriversComponent implements OnInit {
   showLoader: boolean = true;
   selectedDriver!: Driver;
 
+  availableCarsLookup!: Lookup[];
+
   constructor(
     private driverSvc: DriverService,
+    private carSvc: CarService,
     private modalService: NgbModal) { }
 
   ngOnInit(): void {
@@ -35,6 +40,26 @@ export class DriversComponent implements OnInit {
         this.deleteDriver();
       }
     );
+  }
+
+  openAssignCarsModal(AssignCarsModalTemplate: any, driver: Driver): void {
+
+    this.carSvc.getAvailableCarsLookup().subscribe({
+      next: (availableCarsFromApi: Lookup[]) => {
+        this.availableCarsLookup = availableCarsFromApi;
+      }
+    });
+
+    this.selectedDriver = driver;
+    this.modalService.open(AssignCarsModalTemplate).result.then(
+      () => {
+        // TODO call assign driver cars api
+      }
+    );
+  }
+
+  updateSelectedCars(): void {
+
   }
 
   //#region Private Function

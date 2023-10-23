@@ -16,5 +16,6 @@ namespace MB.SimTaxiPro.Dtos.Bookings
         public bool IsPaid { get; set; }
         public PaymentMethod PaymentMethod { get; set; }
         public double Price { get; set; }
+        public DateTime? PaymentTime { get; set; }
     }
 }

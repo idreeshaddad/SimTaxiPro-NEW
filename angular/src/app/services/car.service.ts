@@ -49,4 +49,9 @@ export class CarService {
 
     return this.http.get<Lookup[]>(`${this.apiUrl}/GetCarsLookup`);
   }
+
+  getAvailableCarsLookup(): Observable<Lookup[]> {
+
+    return this.http.get<Lookup[]>(`${this.apiUrl}/GetAvailableCarsLookup`);
+  }
 }

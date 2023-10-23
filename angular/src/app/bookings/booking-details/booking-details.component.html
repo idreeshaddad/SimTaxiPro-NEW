@@ -63,6 +63,16 @@
 
       <div class="row mt-3">
         <div class="col-md-4">
+          Paid on
+        </div>
+        <div class="col-md-4">
+          <span class="fw-bold">{{ booking.paymentTime
+            | date:'short' }}</span>
+        </div>
+      </div>
+
+      <div class="row mt-3">
+        <div class="col-md-4">
           Payment Method
         </div>
         <div class="col-md-4">

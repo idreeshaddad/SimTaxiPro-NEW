@@ -155,6 +155,23 @@ namespace MB.SimTaxiPro.WebApi.Controllers
             return Ok(carsLookup);
         }
 
+        [HttpGet]
+        public async Task<ActionResult<List<LookupDto>>> GetAvailableCarsLookup()
+        {
+            var carsLookup = await _context
+                                        .Cars
+                                        .Where(car => car.DriverId == null)
+                                        .Select(car => new LookupDto()
+                                        {
+                                            Key = car.Id,
+                                            Value = car.Title
+                                        })
+                                        .ToListAsync();
+
+            return Ok(carsLookup);
+        }
+
+
         #endregion
 
         #region Private Functions

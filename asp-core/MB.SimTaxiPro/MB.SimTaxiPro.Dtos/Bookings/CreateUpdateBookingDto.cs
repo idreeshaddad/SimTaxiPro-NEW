@@ -15,7 +15,6 @@ namespace MB.SimTaxiPro.Dtos.Bookings
 
         public List<int> PassengerIds { get; set; } = new List<int>();
 
-        public bool IsPaid { get; set; }
         public PaymentMethod PaymentMethod { get; set; }
         public double Price { get; set; }
     }

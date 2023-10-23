@@ -10,4 +10,5 @@ export interface Booking {
   price: number;
   isPaid: boolean;
   paymentMethod: PaymentMethod;
+  paymentTime: string;
 }

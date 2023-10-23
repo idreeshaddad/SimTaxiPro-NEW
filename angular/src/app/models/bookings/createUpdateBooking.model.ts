@@ -9,6 +9,5 @@ export interface CreateUpdateBooking {
   carId: number;
   driverId: number;
   price: number;
-  isPaid: boolean;
   paymentMethod: PaymentMethod;
 }

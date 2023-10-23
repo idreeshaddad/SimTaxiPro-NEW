@@ -15,9 +15,10 @@ namespace MB.SimTaxiPro.Entities
         public int? DriverId { get; set; }
         public Driver Driver { get; set; }
 
-        public bool IsPaid { get; set; }
         public PaymentMethod PaymentMethod { get; set; }
         public double Price { get; set; }
+        public bool IsPaid { get; set; }
+        public DateTime? PaymentTime { get; set; }
 
         public List<Passenger> Passengers { get; set; } = new List<Passenger>();
     }
