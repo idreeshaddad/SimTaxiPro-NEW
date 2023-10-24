@@ -1,6 +1,8 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Car } from 'src/app/models/cars/car.model';
 import { DriverDetails } from 'src/app/models/drivers/driverDetails.model';
 import { DriverService } from 'src/app/services/driver.service';
 
@@ -14,13 +16,34 @@ export class DriverDetailsComponent implements OnInit {
   driver!: DriverDetails;
   driverId!: number;
 
+  selectedCar!: Car;
+
   constructor(
     private driverSvc: DriverService,
-    private activatedRoute: ActivatedRoute) { }
+    private activatedRoute: ActivatedRoute,
+    private modalService: NgbModal) { }
 
   ngOnInit(): void {
 
     this.getDriverIdFromUrl();
+
+    this.loadDriver();
+  }
+
+  openUnassignCarModal(unassignCarModalTemplate: any, car: Car): void {
+
+    this.selectedCar = car;
+
+    this.modalService.open(unassignCarModalTemplate).result.then(
+      () => {
+        this.unassignCar();
+      }
+    );
+  }
+
+  //#region Private Functions
+
+  private loadDriver(): void {
 
     this.driverSvc.getDriver(this.driverId).subscribe({
       next: (driverDetailsFromApi: DriverDetails) => {
@@ -31,7 +54,6 @@ export class DriverDetailsComponent implements OnInit {
       }
     });
   }
-
 
   private getDriverIdFromUrl(): void {
 
@@ -44,4 +66,20 @@ export class DriverDetailsComponent implements OnInit {
       alert("Please provide an ID in the URL.");
     }
   }
+
+  private unassignCar(): void {
+
+    this.driverSvc.unassignDriverCar(this.driver.id, this.selectedCar.id).subscribe({
+      next: () => {
+        // TODO notify success
+        this.loadDriver();
+      },
+      error: (err: HttpErrorResponse) => {
+        // TODO snackbar
+        console.error(err);
+      }
+    });
+  }
+
+  //#endregion
 }

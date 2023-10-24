@@ -34,14 +34,33 @@
       <tr>
         <th>Title</th>
         <th>Production Year</th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let car of driver?.cars">
         <td>{{ car.title }}</td>
         <td>{{ car.productionYear | date:"YYYY" }}</td>
+        <td>
+          <a class="pointer" title="Unassign Car" (click)="openUnassignCarModal(unassignCarModalTemplate, car)">
+            <i class="fa-solid fa-link-slash text-danger"></i>
+          </a>
+        </td>
       </tr>
     </tbody>
   </table>
 
 </div>
+
+<ng-template #unassignCarModalTemplate let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Unassign Car</h4>
+  </div>
+  <div class="modal-body">
+    <h5>Are you sure you want to unassign <span class="text-danger ">{{ selectedCar.title }}</span>?</h5>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-secondary" (click)="modal.dismiss()">Cancel</button>
+    <button type="button" class="btn btn-danger" (click)="modal.close('unassign')">Delete</button>
+  </div>
+</ng-template>

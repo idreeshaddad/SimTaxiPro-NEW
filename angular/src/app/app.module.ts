@@ -9,7 +9,7 @@ import { DriversComponent } from './drivers/drivers.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DriverDetailsComponent } from './drivers/driver-details/driver-details.component';
 import { CreateUpdateDriverComponent } from './drivers/create-update-driver/create-update-driver.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CarsComponent } from './cars/cars.component';
 import { CarDetailsComponent } from './cars/car-details/car-details.component';
 import { CreateUpdateCarComponent } from './cars/create-update-car/create-update-car.component';
@@ -46,7 +46,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
     NgbModule,
     HttpClientModule,
     ReactiveFormsModule,
-    NgSelectModule
+    NgSelectModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

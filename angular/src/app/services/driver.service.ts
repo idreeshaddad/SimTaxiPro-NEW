@@ -49,4 +49,14 @@ export class DriverService {
 
     return this.http.get<Lookup[]>(`${this.apiUrl}/GetDriversLookup`);
   }
+
+  assignDriverCars(driverId: number, carsIds: number[]): Observable<any> {
+
+    return this.http.post(`${this.apiUrl}/AssignDriverCars?driverId=${driverId}`, carsIds);
+  }
+
+  unassignDriverCar(driverId: number, carId: number): Observable<any> {
+
+    return this.http.post(`${this.apiUrl}/UnassignCar?driverId=${driverId}&carId=${carId}`, null);
+  }
 }

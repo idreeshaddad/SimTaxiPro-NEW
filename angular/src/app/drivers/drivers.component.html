@@ -61,8 +61,9 @@
       <h4 class="modal-title" id="modal-basic-title">Assign Cars</h4>
     </div>
     <div class="modal-body">
-      <ng-select class="custom-select2" [items]="availableCarsLookup" bindLabel="value" bindValue="key"
-        (change)="updateSelectedCars()" [multiple]="true" placeholder="Select Cars">
+      <h4>Select cars to assign to driver {{ selectedDriver.fullName }}:</h4>
+      <ng-select [items]="availableCarsLookup" bindLabel="value" bindValue="key" (change)="updateSelectedCars()"
+        [multiple]="true" placeholder="Select Cars" [(ngModel)]="selectedCarsIds">
       </ng-select>
     </div>
     <div class="modal-footer">

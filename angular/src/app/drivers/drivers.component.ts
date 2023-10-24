@@ -22,6 +22,8 @@ export class DriversComponent implements OnInit {
 
   availableCarsLookup!: Lookup[];
 
+  selectedCarsIds: number[] = [];
+
   constructor(
     private driverSvc: DriverService,
     private carSvc: CarService,
@@ -44,16 +46,16 @@ export class DriversComponent implements OnInit {
 
   openAssignCarsModal(AssignCarsModalTemplate: any, driver: Driver): void {
 
-    this.carSvc.getAvailableCarsLookup().subscribe({
-      next: (availableCarsFromApi: Lookup[]) => {
-        this.availableCarsLookup = availableCarsFromApi;
-      }
-    });
+    this.loadAvailableCarsLookup();
 
     this.selectedDriver = driver;
-    this.modalService.open(AssignCarsModalTemplate).result.then(
+    this.selectedCarsIds = [];
+
+    this.modalService.open(AssignCarsModalTemplate, {
+      size: 'lg'
+    }).result.then(
       () => {
-        // TODO call assign driver cars api
+        this.assignCarsToDriver();
       }
     );
   }
@@ -85,6 +87,28 @@ export class DriversComponent implements OnInit {
       },
       error: (err: HttpErrorResponse) => {
         console.log(err);
+      }
+    });
+  }
+
+  private loadAvailableCarsLookup(): void {
+
+    this.carSvc.getAvailableCarsLookup().subscribe({
+      next: (availableCarsFromApi: Lookup[]) => {
+        this.availableCarsLookup = availableCarsFromApi;
+      }
+    });
+  }
+
+  private assignCarsToDriver() {
+
+    this.driverSvc.assignDriverCars(this.selectedDriver.id, this.selectedCarsIds).subscribe({
+      next: () => {
+        // TODO snackbar: successfully added to driver
+      },
+      error: (err: HttpErrorResponse) => {
+        // TODO snackbar
+        console.error(err);
       }
     });
   }

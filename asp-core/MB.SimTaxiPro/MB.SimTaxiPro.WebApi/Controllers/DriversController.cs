@@ -146,7 +146,7 @@ namespace MB.SimTaxiPro.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AssignDriverCars(int driverId, List<int> carIds)
+        public async Task<IActionResult> AssignDriverCars(int driverId, List<int> carsIds)
         {
             var driver = await _context
                             .Drivers
@@ -160,12 +160,12 @@ namespace MB.SimTaxiPro.WebApi.Controllers
 
             var cars = await _context
                                 .Cars
-                                .Where(car => carIds.Contains(car.Id))
+                                .Where(car => carsIds.Contains(car.Id))
                                 .ToListAsync();
 
             if (cars.Count() == 0)
             {
-                return NotFound($"Cars with Ids={carIds.ToString()} cannot be found");
+                return NotFound($"Cars with Ids={carsIds.ToString()} cannot be found");
             }
 
 
