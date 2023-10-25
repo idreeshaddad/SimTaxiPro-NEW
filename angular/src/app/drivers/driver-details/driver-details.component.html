@@ -43,7 +43,7 @@
         <td>{{ car.productionYear | date:"YYYY" }}</td>
         <td>
           <a class="pointer" title="Unassign Car" (click)="openUnassignCarModal(unassignCarModalTemplate, car)">
-            <i class="fa-solid fa-link-slash text-danger"></i>
+            <i class="fa-solid fa-link-slash text-warning"></i>
           </a>
         </td>
       </tr>
@@ -61,6 +61,6 @@
   </div>
   <div class="modal-footer">
     <button class="btn btn-secondary" (click)="modal.dismiss()">Cancel</button>
-    <button type="button" class="btn btn-danger" (click)="modal.close('unassign')">Delete</button>
+    <button type="button" class="btn btn-warning" (click)="modal.close('unassign')">Unassign</button>
   </div>
 </ng-template>

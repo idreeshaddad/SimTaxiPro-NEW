@@ -39,11 +39,14 @@
 
         </td>
         <td>
+
+          <ng-template #paymentTimeTipContent>
+            Paid on <span class="text-warning fw-bold">{{ booking.paymentTime | date:'short' }}</span>
+          </ng-template>
           <ng-container *ngIf="booking.isPaid; else elsePaidTemplate">
-            <ng-template #paymentTimeTipContent>
-              Paid on <span class="text-warning fw-bold">{{ booking.paymentTime | date:'short' }}</span>
-            </ng-template>
-            <i class="fa-solid fa-circle-check text-success" [ngbTooltip]="paymentTimeTipContent"></i>
+            <div class="d-inline-block " [ngbTooltip]="paymentTimeTipContent">
+              <i class="fa-solid fa-circle-check text-success"></i>
+            </div>
           </ng-container>
           <ng-template #elsePaidTemplate>
             <i class="fa-solid fa-circle-xmark text-danger"></i>
