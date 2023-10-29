@@ -48,4 +48,9 @@ export class BookingService {
 
     return this.http.post(`${this.apiUrl}/PayBooking`, id);
   }
+
+  unpayBooking(id: number): Observable<any> {
+
+    return this.http.post(`${this.apiUrl}/UnpayBooking`, id);
+  }
 }

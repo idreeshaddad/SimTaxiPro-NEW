@@ -65,9 +65,19 @@
           <a class="pointer ms-2" title="Delete" (click)="openDeleteBookingModal(deleteBookingModalTemplate, booking)">
             <i class="fa-solid fa-trash text-danger"></i>
           </a>
-          <a class="pointer ms-2" title="Pay" (click)="openPayModal(payBookingModalTemplate, booking)">
-            <i class="fa-brands fa-paypal text-primary"></i>
-          </a>
+
+          <ng-container *ngIf="booking.isPaid; else elseTemplate">
+            <a class="pointer ms-2" title="Unpay" (click)="openUnpayModal(unPayBookingModalTemplate, booking)">
+              <i class="fa-regular fa-circle-xmark text-primary"></i>
+            </a>
+          </ng-container>
+          <ng-template #elseTemplate>
+            <a class="pointer ms-2" title="Pay" (click)="openPayModal(payBookingModalTemplate, booking)">
+              <i class="fa-brands fa-paypal text-primary"></i>
+            </a>
+          </ng-template>
+
+
         </td>
       </tr>
     </tbody>
@@ -99,5 +109,20 @@
   <div class="modal-footer">
     <button type="button" class="btn btn-secondary" (click)="paymentModal.dismiss()">Cancel</button>
     <button type="button" class="btn btn-primary" (click)="paymentModal.close('pay')">Pay</button>
+  </div>
+</ng-template>
+
+<ng-template #unPayBookingModalTemplate let-paymentModal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Unpay Booking</h4>
+  </div>
+  <div class="modal-body">
+    <h5>Are you sure you want to set this booking as <span class="fw-bold text-decoration-underline ">unpaid</span>
+      #<span class="text-primary">{{ selectedBooking.id }}</span>?
+    </h5>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="paymentModal.dismiss()">Cancel</button>
+    <button type="button" class="btn btn-primary" (click)="paymentModal.close('pay')">Unpay</button>
   </div>
 </ng-template>

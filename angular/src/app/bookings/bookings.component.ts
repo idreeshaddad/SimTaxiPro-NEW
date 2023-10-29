@@ -50,6 +50,16 @@ export class BookingsComponent implements OnInit {
     );
   }
 
+  openUnpayModal(unPayBookingModalTemplate: any, booking: Booking) {
+
+    this.selectedBooking = booking;
+
+    this.modalService.open(unPayBookingModalTemplate).result.then(
+      (result) => {
+        this.unpayBooking();
+      }
+    );
+  }
   //#region Private Functions
 
   private loadBookings(): void {
@@ -84,6 +94,20 @@ export class BookingsComponent implements OnInit {
   private payBooking(): void {
 
     this.bookingSvc.payBooking(this.selectedBooking.id).subscribe({
+      next: () => {
+        this.loadBookings();
+      },
+      error: (err: HttpErrorResponse) => {
+        // TODO Snackbar
+        alert(err);
+        console.error(err);
+      }
+    });
+  }
+
+  private unpayBooking(): void {
+
+    this.bookingSvc.unpayBooking(this.selectedBooking.id).subscribe({
       next: () => {
         this.loadBookings();
       },
